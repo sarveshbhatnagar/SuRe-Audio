@@ -44,6 +44,7 @@ def transcribe_gcs(gcs_uri):
     config = speech.RecognitionConfig(
         encoding=speech.RecognitionConfig.AudioEncoding.FLAC,
         sample_rate_hertz=16000,
+        enable_word_time_offsets=True,
         language_code="en-US",
     )
 
