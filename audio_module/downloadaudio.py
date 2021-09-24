@@ -16,13 +16,19 @@ outpt, filename = get_audio(url)
 
 
 def change_name(filename, newname):
-    pass
+    """
+    rename the file to the new name
+    """
+    fileloc = os.path.join(os.path.abspath(".."), "audio_files")
+    os.rename(os.path.join(fileloc, filename), os.path.join(fileloc, newname))
+    return True
 # def save_file(outpt):
 #     current_file= open("")
 
 # “../audio_files/filename.mp3”
 
 
+change_name(filename, "test.mp3")
 # from pytube import YouTube
 # yt = YouTube("https://www.youtube.com/watch?v=n06H7OcPd-g")
 # yt = yt.get('mp4', '720p')
