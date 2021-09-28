@@ -1,35 +1,41 @@
-import pafy
+from __future__ import unicode_literals
+# import pafy
 import os
+# from tube_dl import Youtube
+import youtube_dl
 
 
 url = "https://www.youtube.com/watch?v=erPS21mntMA"
 
 
-def get_audio(url):
-    video = pafy.new(url)
+def get_audio(url, dest=""):
 
-    bestaudio = video.getbestaudio()
-    return bestaudio.download(filepath="../audio_files/"), bestaudio.filename
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+
+    return True
 
 
-outpt, filename = get_audio(url)
+out_file = get_audio(url)
+
+# TODO check breaking changes
 
 
-def change_name(filename, newname):
+def change_name(filepath, newname):
     """
     rename the file to the new name
     """
     fileloc = os.path.join(os.path.abspath(".."), "audio_files")
-    os.rename(os.path.join(fileloc, filename), os.path.join(fileloc, newname))
+    os.rename(filepath, os.path.join(fileloc, newname))
     return True
-# def save_file(outpt):
-#     current_file= open("")
-
-# “../audio_files/filename.mp3”
 
 
-change_name(filename, "test1.mp3")
-# from pytube import YouTube
-# yt = YouTube("https://www.youtube.com/watch?v=n06H7OcPd-g")
-# yt = yt.get('mp4', '720p')
-# yt.download('../audio_files/yt.mp3')
+change_name(out_file, "test1.mp4")
