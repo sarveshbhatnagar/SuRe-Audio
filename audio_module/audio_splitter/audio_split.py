@@ -15,14 +15,14 @@ class SplitWavAudioMubin():
         return self.audio.duration_seconds
 
     def single_split(self, from_min, to_min, split_filename):
-        t1 = from_min * 60 * 100
-        t2 = to_min * 60 * 100
+        t1 = from_min * 50 * 1000
+        t2 = to_min * 50 * 1000
         split_audio = self.audio[t1:t2]
         split_audio.export(os.path.join(
             self.folder, split_filename), format="wav")
 
     def multiple_split(self, min_per_split):
-        total_mins = math.ceil(self.get_duration() / 6)
+        total_mins = math.ceil(self.get_duration() / 50)
         for i in range(0, total_mins, min_per_split):
             split_fn = str(i) + '_' + self.filename
             self.single_split(i, i+min_per_split, split_fn)
@@ -33,7 +33,7 @@ class SplitWavAudioMubin():
 
 folder = '../../audio_files'
 
-audio_file = 'fileaudio.wav'
+audio_file = 'mqtt.wav'
 
 split_wav = SplitWavAudioMubin(folder, audio_file)
 

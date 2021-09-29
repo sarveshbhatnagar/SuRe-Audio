@@ -23,18 +23,23 @@ def transcribe_file(speech_file):
     audio = types.RecognitionAudio(content=content)
 
     config = types.RecognitionConfig(
-        encoding=types.RecognitionConfig.AudioEncoding.FLAC,
+        # encoding=types.RecognitionConfig.AudioEncoding.FLAC,
         enable_word_time_offsets=True,
         sample_rate_hertz=16000,
-        language_code='en-US')
+        language_code='en-US',
+        audio_channel_count=2)
 
-    response = client.long_running_recognize(config=config, audio=audio)
+    response = client.recognize(config=config, audio=audio)
 
     # response = client.recognize(config=config, audio=audio)
     return response.results
 
 
-print(transcribe_file("../audio_files/fileaudio.wav"))
+# for i in range(5):
+#     print("Transcribing file {}".format(i))
+#     res = transcribe_file("../audio_files/{}_mqtt.wav".format(i))
+#     with open("file{}".format(i), "w") as f:
+#         f.write(res)
 
 
 def transcribe_gcs(gcs_uri):
@@ -58,9 +63,15 @@ def transcribe_gcs(gcs_uri):
 
     # Each result is for a consecutive portion of the audio. Iterate through
     # them to get the transcripts for the entire audio file.
+    count = 0
     for result in response.results:
+
         # The first alternative is the most likely one for this portion.
         print(u"Transcript: {}".format(result.alternatives[0].transcript))
+        with open("myfile{}.txt".format(count), "w") as f:
+            f.write(result.alternatives[0].transcript)
+
+        count += 1
         print("Confidence: {}".format(result.alternatives[0].confidence))
 
 # print(transcribe_file("../audio_files/abc.m4a"))
