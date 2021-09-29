@@ -10,12 +10,12 @@ credentials = service_account.Credentials.from_service_account_file(
 def transcribe_file(speech_file):
     """Transcribe the given audio file."""
     # from google.api_core.protobuf_helpers import get_messages
-    from google.cloud import speech
+    from google.cloud.speech import SpeechClient
     # from google.cloud.speech import enums
     from google.cloud.speech_v1 import types
     # from google.cloud.speech import types
 
-    client = speech.SpeechClient(credentials=credentials)
+    client = SpeechClient(credentials=credentials)
 
     with io.open(speech_file, 'rb') as audio_file:
         content = audio_file.read()
@@ -32,6 +32,9 @@ def transcribe_file(speech_file):
 
     # response = client.recognize(config=config, audio=audio)
     return response.results
+
+
+print(transcribe_file("../audio_files/fileaudio.wav"))
 
 
 def transcribe_gcs(gcs_uri):
@@ -61,3 +64,7 @@ def transcribe_gcs(gcs_uri):
         print("Confidence: {}".format(result.alternatives[0].confidence))
 
 # print(transcribe_file("../audio_files/abc.m4a"))
+
+
+def transcribe_deepspeech(speechfile):
+    pass
