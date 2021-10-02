@@ -7,7 +7,7 @@ credentials = service_account.Credentials.from_service_account_file(
     "api-key.json")
 
 
-def transcribe_file(speech_file):
+def transcribe_file(speech_file, result_path=""):
     """Transcribe the given audio file."""
     # from google.api_core.protobuf_helpers import get_messages
     from google.cloud.speech import SpeechClient
