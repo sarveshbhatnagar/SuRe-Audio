@@ -59,3 +59,8 @@ def change_name(filename, newname):
 tasks left to do
 1)find the names of the all the files downloading
 2)Use the names to change the path of the downloaded files using change_name function'''
+
+def change_name_by_path(filepath,newname):
+    basepath=os.path.dirname(filepath)
+    os.rename(filepath,os.path.join(basepath,newname))
+    return True
