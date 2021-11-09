@@ -63,7 +63,19 @@ class TText:
         self.transcript = transcript
         self.text = transcript["text"]
         self.start = transcript["start"]
-        self.end = transcript["end"]
+        # self.end = transcript["end"]
+        self.duration = transcript["duration"]
+        self.end = self.start + self.duration
+        self.score = 0
+
+    def set_score(self, score):
+        ''' sets the score of the transcript
+            params:
+                transcript from class instance
+            returns:
+                score of the transcript
+        '''
+        self.score = score
 
     def get_text(self):
         ''' returns the transcript text
@@ -150,7 +162,7 @@ class TTexts:
 
 
 # steps to use Transcriber class
-th = Transcriber("kv-YXKRUheQ")
-th.transcribe()
-print(th.save_transcript("ABC"))
-print(th.load_transcript("ABC"))
+# th = Transcriber("kv-YXKRUheQ")
+# th.transcribe()
+# print(th.save_transcript("ABC"))
+# print(th.load_transcript("ABC"))
