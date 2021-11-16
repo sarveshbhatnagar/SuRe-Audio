@@ -69,7 +69,7 @@ class TText:
         self.score = 0
 
     def set_score(self, score):
-        ''' sets the score of the transcript
+        ''' sets the tfidf score of the transcript
             params:
                 transcript from class instance
             returns:
