@@ -22,6 +22,7 @@ class Transcriber:
         '''
 
         self.transcript = YouTubeTranscriptApi.get_transcript(self.video_Id)
+        print(self.transcript)
         return self.transcript
 
     def save_transcript(self, filename):
@@ -49,7 +50,7 @@ class Transcriber:
             filename = pickle.load(f)
             return filename
 
-
+# Transcriber.transcribe("tcdVC4e6EV4")
 class TText:
     """
     Simply converts transcript dict to TText instance for easy access
