@@ -58,8 +58,9 @@ if __name__ == '__main__':
     print("Total duration: ", total_duration)
 
     print(important_tindx)
-    print(main_ttxts[17].transcripts[16].get_start())
+    print(main_ttxts[2].transcripts[18].get_start(),main_ttxts[2].transcripts[18].get_end())
     # print(original_text)
     # print("Actual: ", th.duration)
 
     # print("Complete duration: ", complete_duration)
+    
