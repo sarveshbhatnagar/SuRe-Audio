@@ -27,12 +27,18 @@ class CompletenessAgent:
         if(not startsWell):
             # Make it correct
             # start_str = ""
+            count=0
             for i in range(index-1, -1, -1):
                 if(self.ttexts.transcripts[i].text.endswith(".")):
                     stind = i+1
                     # print(self.ttexts.transcripts[i].text)
                     break
+
                 start_str += self.ttexts.transcripts[i].text + " "
+                tokens=start_str.split(" ")
+                if len(tokens)>=7:
+                    stind=i 
+                    break
 
         if(not endsWell):
             # Make it correct
@@ -43,6 +49,10 @@ class CompletenessAgent:
                     endind = i
                     break
                 end_str += self.ttexts.transcripts[i].text + " "
+                tokens=end_str.split(" ")
+                if len(tokens)>=7:
+                    endind=i
+                    break
         return start_str + self.ttexts.transcripts[index].text + end_str, stind, endind
 
 

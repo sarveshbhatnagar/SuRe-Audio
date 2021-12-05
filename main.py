@@ -40,7 +40,9 @@ if __name__ == '__main__':
                 total_duration += ttxts.transcripts[j].duration
                 # print(ttxts.transcripts[j].text)
                 # print(cmp.get_complete_sentence(j))
-                final_text += cmp.get_complete_sentence(j)[0]
+                res=cmp.get_complete_sentence(j)
+                final_text += res[0]
+                print(res)
 
     # print(important_tindx)
     # print(len(important_tindx))
@@ -52,6 +54,7 @@ if __name__ == '__main__':
     print("Reduced to: ", len(final_text) / len(original_text))
 
     print("Total duration: ", total_duration)
+    # print(original_text)
     # print("Actual: ", th.duration)
 
     # print("Complete duration: ", complete_duration)
