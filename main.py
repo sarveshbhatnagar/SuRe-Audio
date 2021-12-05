@@ -1,34 +1,57 @@
 import transcribe_agent.transcribe as tr
 import summary_agent.summarize as sm
-
+import completeness_agent.complete as cm
+import numpy as np
 
 if __name__ == '__main__':
-    th = tr.Transcriber("J8Eh7RqggsU")
-    th.transcribe()
-    tt = tr.TTexts(th.transcript)
+    th = tr.Transcriber("c4Af2FcgamA")
+    # th.transcribe()
+    # th.save_transcript("sometranscript2")
+    th.load_transcript("sometranscript2")
+    divide = 20  # Optimization parameter for % compression.
+    parts = len(th.transcript) // divide
+    parts_list = [th.transcript[i:i + parts]
+                  for i in range(0, len(th.transcript), parts)]
+    main_scores = []
+    main_ttxts = []
 
-    summarizer = sm.Summarize(tt)
-    scores, ttxts = summarizer.get_scores()
-
-    # print(scores)
+    important_tindx = []
     total_duration = 0
-    for i in range(len(scores)):
-        if(scores[i] > 0.4):
-            if(i-1 >= 0 and i+1 < len(scores)):
-                print(
-                    ttxts.transcripts[i-1].text, ttxts.transcripts[i].text, ttxts.transcripts[i+1].text)
-                total_duration += ttxts.transcripts[i].duration
-                total_duration += ttxts.transcripts[i-1].duration
-                total_duration += ttxts.transcripts[i+1].duration
-            else:
-                print(ttxts.transcripts[i].text)
-                total_duration += ttxts.transcripts[i].duration
+    complete_duration = 0
+    # Find important index in parts_list
+
+    final_text = ""
+
+    for i in range(len(parts_list)):
+        tt = tr.TTexts(parts_list[i])
+        summarizer = sm.Summarize(tt)
+
+        scores, ttxts = summarizer.get_scores()
+        cmp = cm.CompletenessAgent(scores, ttxts)
+        main_scores.append(scores)
+        main_ttxts.append(ttxts)
+        val = np.percentile(scores, 98)
+        cur_tindx = []
+        for j in range(len(scores)):
+            cur_tindx.append(j)
+            complete_duration += ttxts.transcripts[j].duration
+            if(scores[j] > val):
+                important_tindx.append((i, j))
+                total_duration += ttxts.transcripts[j].duration
+                # print(ttxts.transcripts[j].text)
+                # print(cmp.get_complete_sentence(j))
+                final_text += cmp.get_complete_sentence(j)[0]
+
+    # print(important_tindx)
+    # print(len(important_tindx))
+    print(final_text)
+    # print(len(final_text))
+    tt = tr.TTexts(th.transcript)
+    original_text = tt.get_complete_text()
+    print(len(original_text))
+    print("Reduced to: ", len(final_text) / len(original_text))
 
     print("Total duration: ", total_duration)
     # print("Actual: ", th.duration)
 
-    ttdur = 0
-    for i in range(len(scores)):
-        ttdur += ttxts.transcripts[i].duration
-
-    print("Complete duration: ", ttdur)
+    # print("Complete duration: ", complete_duration)

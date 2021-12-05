@@ -15,6 +15,7 @@ class Transcriber:
         ''' creates a transcript of the video
             params:
                 video_Id from class instance
+
             returns:
                 transcript of the video
             saves:
@@ -22,7 +23,7 @@ class Transcriber:
         '''
 
         self.transcript = YouTubeTranscriptApi.get_transcript(self.video_Id)
-        print(self.transcript)
+        # print(self.transcript)
         return self.transcript
 
     def save_transcript(self, filename):
@@ -48,9 +49,12 @@ class Transcriber:
         self.filename = filename
         with open(filename, 'rb') as f:
             filename = pickle.load(f)
+            self.transcript = filename
             return filename
 
 # Transcriber.transcribe("tcdVC4e6EV4")
+
+
 class TText:
     """
     Simply converts transcript dict to TText instance for easy access
@@ -117,12 +121,18 @@ class TTexts:
     tt=TTexts(th.transcript)
     """
 
-    def __init__(self, transcripts):
+    def __init__(self, transcripts, k=10):
         ''' initilise transcripts from a youtube video 
 
             for eg.; https://www.youtube.com/watch?v=kv-YXKRUheQ in this video link transcripts= 'kv-YXKRUheQ'
         '''
         self.transcripts = [TText(transcript) for transcript in transcripts]
+        self.divide = k
+        self.parts = len(self.transcripts) // self.divide
+        if(self.parts != 0):
+            self.parts_list = [transcripts[i:i + self.parts]
+                               for i in range(0, len(transcripts), self.parts)]
+        # print(self.parts_list)
 
     def get_complete_text(self):
         ''' returns the complete transcript text
