@@ -36,12 +36,14 @@ if __name__ == '__main__':
             cur_tindx.append(j)
             complete_duration += ttxts.transcripts[j].duration
             if(scores[j] > val):
-                important_tindx.append((i, j))
+                # important_tindx.append((i, j))
                 total_duration += ttxts.transcripts[j].duration
                 # print(ttxts.transcripts[j].text)
                 # print(cmp.get_complete_sentence(j))
                 res=cmp.get_complete_sentence(j)
                 final_text += res[0]
+                important_tindx.append((i, res))
+
                 print(res)
 
     # print(important_tindx)
@@ -54,6 +56,9 @@ if __name__ == '__main__':
     print("Reduced to: ", len(final_text) / len(original_text))
 
     print("Total duration: ", total_duration)
+
+    print(important_tindx)
+    print(main_ttxts[17].transcripts[16].get_start())
     # print(original_text)
     # print("Actual: ", th.duration)
 

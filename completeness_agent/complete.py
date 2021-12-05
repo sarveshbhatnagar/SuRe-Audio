@@ -34,7 +34,7 @@ class CompletenessAgent:
                     # print(self.ttexts.transcripts[i].text)
                     break
 
-                start_str += self.ttexts.transcripts[i].text + " "
+                start_str = self.ttexts.transcripts[i].text + " "+ start_str + " "
                 tokens=start_str.split(" ")
                 if len(tokens)>=7:
                     stind=i 
