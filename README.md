@@ -4,5 +4,5 @@ Simplify your lectures and shorten revision time
 
 2 Problem,
 
-1. Repeat of sentences.
-2. Finding sentences.
+1. Create the audio of the summary we got from main.py.
+2. Remove overlaping sentances.
