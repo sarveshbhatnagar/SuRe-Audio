@@ -4,10 +4,10 @@ import completeness_agent.complete as cm
 import numpy as np
 
 if __name__ == '__main__':
-    th = tr.Transcriber("c4Af2FcgamA")
-    # th.transcribe()
-    # th.save_transcript("sometranscript2")
-    th.load_transcript("sometranscript2")
+    th = tr.Transcriber("xvqsFTUsOmc")
+    th.transcribe()
+    th.save_transcript("sometranscript3")
+    # th.load_transcript("sometranscript")
     divide = 20  # Optimization parameter for % compression.
     parts = len(th.transcript) // divide
     parts_list = [th.transcript[i:i + parts]
@@ -40,25 +40,25 @@ if __name__ == '__main__':
                 total_duration += ttxts.transcripts[j].duration
                 # print(ttxts.transcripts[j].text)
                 # print(cmp.get_complete_sentence(j))
-                res=cmp.get_complete_sentence(j)
+                res = cmp.get_complete_sentence(j)
                 final_text += res[0]
                 important_tindx.append((i, res))
 
-                print(res)
+                # print(res)
 
     # print(important_tindx)
     # print(len(important_tindx))
     print(final_text)
     # print(len(final_text))
-    tt = tr.TTexts(th.transcript)
-    original_text = tt.get_complete_text()
-    print(len(original_text))
-    print("Reduced to: ", len(final_text) / len(original_text))
+    # tt = tr.TTexts(th.transcript)
+    # original_text = tt.get_complete_text()
+    # print(len(original_text))
+    # print("Reduced to: ", len(final_text) / len(original_text))
 
-    print("Total duration: ", total_duration)
+    # print("Total duration: ", total_duration)
 
-    print(important_tindx)
-    print(main_ttxts[17].transcripts[16].get_start())
+    # print(important_tindx)
+    # print(main_ttxts[17].transcripts[16].get_start())
     # print(original_text)
     # print("Actual: ", th.duration)
 
