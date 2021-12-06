@@ -1,0 +1,95 @@
+Um, and then if you take a look at outside the kind of the technical circles, there's a lot of people, um, in policy, um, and trying to ask what is going on with AI.
+But we know that didn't really happen and there's this kind of folklore example, um, people are trying to do machine translation.
+And also, the problems, the way they formulate them, intrinsically relied on camp- exponential search which, um, no matter how much compute you have, you're never going to, you know, um, win that race.
+Um, they also have limited, you know, information, and this is maybe a kind of a more subtle point that if I gave you infinite compute and I asked you to translate, I don't think you would be able to figure it out because it's not a computation problem.
+Lisp was- is- uh, had a lot of ideas that underlay ma- many of the high level programming languages we have, garbage collection, um, time-sharing, allowing, uh, multiple people to use the same- one computer at the same time, which is something that, uh, we kind of take for granted.
+And the idea is that if you could encode expert's knowledge about the world, then you could do kind of amazing things, and at the time the knowledge was encoded in generally a set of rules.
+The goal isn't to solve it- all of AI, but to really focus on some choice and problems like diagnosing the diseases or converting customer's order parts into parts, and, uh- customer orders into parts and, uh, this was the first time that AI, I think, really had a real impact on industries.
+So they developed a theory of, um, artificial neural networks, um, and this is kind of you can think about the root as of, you know, deep learning in some sense.
+Um, because at that time, the compute wasn't there, you couldn't really run any kind of training new models or um.
+Um, but there was always this kinda minority group, um, who were really invested in and believed in, um, the power of neural networks, and I think this was always just kind of a matter of time.
+Um, people kind of discovered or rediscovered the backpropagation algorithm which allowed a kind of, for a generic algorithm that could train these multilayer neural networks because single layer remember was insufficient to do a lot of things.
+Um, so this was, you know, great, ah, but it wasn't until this decade that the, um, this area of neural networks really kind of took off, um, under the moniker deep learning.
+But I want to pause for a moment and really think about, [NOISE] maybe if there were actually kind of deeper connections here.
+Um, as with any story it's not a full picture, and I want to point out on this slide that, AI has drawn from a lot of different, you know, fields, many of the techniques that we're gonna look at, for example, maximum likelihood, came from your statistics or games came from economics, optimizations, gradient descent, hence from- was, you know, in the '50s completely unrelated to AI.
+And that's what makes it, I think really interesting because of the- the new [NOISE] avenues that are opened up by kind of unique combinations of, um, existing techniques.
+[NOISE] And these two are obviously very related and they have, ah, a lot of shared technical, um, overlap, but, you know, philosophically they're kind of different.
+And you think okay, how- how- what- what- what can humans do that is, you know, so amazing.
+And learning it seems to be kind of this critical ingredient, which drives a lot of the success in AI today but also with, um, you, know, human intelligence it's clear that learning plays such a central role in getting us to the level that we're operating at.
+So if you look at the way that machines are, have been successful, it's all with a narrow set of tasks and, you know, millions or billions of examples, and you just crunch a lot of computation, and you can really kind of optimize, um, every- any tasks that you're going to come-come up with.
+[NOISE] They don't necessarily do any, you know, one thing well, but they are have such a kind of diverse set of, you know, experiences, can solve a diverse set of tasks and learn from each individual tasks from very few examples.
+Basically we say okay well, you know, it's kind of cool to think about how we can, uh, you know, recreate intelligence.
+Because, you know, after all, we're- we're humans, I guess it's a little bit selfish but, um, we're in charge right now.
+Um, there's a lot of poverty in the world and, um, part of it is- is just kind of understanding what's- what's going on and they had this idea of using, uh, computer vision on satellite imagery to predict things like, you know p-, uh, GDP.
+Um, but nonetheless it uses convolutional neural networks which is a technique that was inspired by, um, you know the brain and so that's- that's kind of interesting.
+And one kind of an important point I wanna bring up is that, you know, it's -- it's how is machine learning and AI kinda working today?
+Something a little bit more, uh, kind of s- sensitive is, you know, asking well,  these systems are being deployed to all these- all these people whether they kinda want it or- or want it or not.
+Um, we're trying to really kind of dream and think about how do you get these capabilities like learning from very few examples that humans have into, you know, machines and a whole- maybe opening up a kind of a- a different set of technical capabilities.
+Um, and the way to think about all this is that, um, in AI we're trying to solve really complex problems.
+And- but at the end of the day we want to produce some software or maybe some hardware that actually runs and does stuff, right?
+So what this class is going to do is to give you one example of a structure which will hopefully help you approach hard problems, and think about how to solve them in a kind of more principled way.
+Um, so this is going to be important for example when you work on your final projects and you have a real world problem, you need to figure out, um, you can't have everything and you have to figure out judiciously how to, um, manage your- your resources.
+And I want to really emphasize that, you know, learning is not- as I've presented is really not about any one particular algorithm like nearest neighbors or neural networks.
+So first we're gonna talk about machine learning, and like I've kind of alluded to earlier, machine learning is going to be such a kind of an important building block of- that can be applied to any of the models that we kind of develop.
+Rather than having, you know, a million lines of code which is unmanageable, you have a lot of data which is collected in kind of a more natural way and a smaller amount of code that can operate on this data and this paradigm has really been, it's really been powerful.
+One thing to think about in terms of machine learning is that it, it is, requires a leap of faith, right.
+So after we talk about machine learning, we're going to go back and talk about the, the simplest of models, right.
+So examples like are linear classifiers, deep neural networks, um, and most of these models are the ones that people in machine learning um, use.
+Um, also some things that are might not be- you might think of, um, planning as such as gen- you know, generation, um.
+Okay, so state-based models, um, are very powerful and a value to kind of have foresight.
+Yeah, so the question is why is not the- why is the Sudoku problem not a state-based model?
+Right, it's- think about these models as kind of different, um, analogy as like a programming language.
+Uh, I don't necessarily think of, uh, so a lot of the reflex models actually can work in continuous state spaces, for example images.
+Um, so you'd like to be able to say okay, you know, tell us some information, um, and then later you wanna be able to ask some questions and have the system be able to reply to you.
+One way you could think about is building a system that you can actually talk to using natural language, okay.
+Uh, okay, so this is going to be a system that is, um, based on logic that I'm going to, um, tell the system a bunch of things and I'm going to ask some questions.
+So I'm going to teach you a few things like, um, Alice is a student, okay.
+So, um, okay it's, you know, it's doing some reasoning, right?
+So this is kind of an example of a interaction which, um, if you think about it has is ve- very different from where you would see kind of in a typical, um, you know, ML system where you have to show it millions of examples of one particular thing and it can do a kind of one task.
+It gives you a set of tools and a way of thinking about problems that hopefully will be really useful for you when you go out in the world and try to solve real world problems.
+So you can, um, it's like, you know, in machine learning, you have a train set, and you have a test set.
+So there's, um, I think it's worth taking a look at exam because this, this kind of surprises people every- the exam is a little bit different than the types of problems that you see on, on the homework and there are kind of more problem, you know, solving.
+Um, and one thing we're going to focus on right now is, um, the, kind of inference and learning components of, of this course.
+So this is going to be, uh, it might be a review for some of you but hopefully, it's gonna be a, a good, um, you know, way to get everyone on the same page.
+Um, we're going to talk about one algorithmic tool, um, based on Dynamic Programming which is a very powerful way of solving these, um, complex optimization problems.
+So a typical place this shows up is in learning where you define, uh, objective function like the training error and you're trying to find a weight vector W.
+And we're going to show that gradient descent is, uh, uh, easy and a surprisingly effective way of solving these, um, continuous optimization problems.
+So to introduce these two ideas, I'm going to look at two, um, problems and trying to kind of work through them.
+Okay, so the first problem is, um, you know, computing edit distance.
+Um, and this might not look, you know, like an AI problem, but a lot of, ah, AI problems have this as kind of a, you know, building block if you wanted to do some sort of matching between, um, you know, two words or two, um, biological sequences.
+Right, so if you have a string of- that's very long there's just way too many things to like just try out all of them.
+So let's try to simplify [NOISE] the, the, the problem a bit.
+So, um, one thing to note is that okay, where so the general principle, let me just write the general principle, um, is to, you know, reduce the problem to a simpler problem because then you can hopefully solve- it is easier to solve, and then you can maybe keep on doing that until you get something that's trivial.
+One is that well, we're technically saying we can, um, you know, insert into S right but if we insert into S, it makes the problem kind of larger in some sense, right?
+We probably wanna insert a S in which case no S matches that and then we've reduced that problem, right?
+So we can actually think about, you know, inserting into S to S as equivalent to kind of deleting from, um, from T.
+But this just introduces a lot of, um, you know, ways of doing it which all kind of result in the same answer.
+So why don't we just start more systematically at one end and then just proceed and try to chisel-off the problem, um, kind of let's say from the end.
+[NOISE] the question is why are we starting at the end as oppo- well, the idea is that if you start at the end then you have kind of a more systematic and consistent way of, you know, reducing the problem.
+Yeah, the question is how do we know that starting, um, at one end can give you the optimal strategy?
+I think between the two strings "s" and "t" like some form of- some sort of [NOISE] pattern [inaudible] string.
+Okay so, um, so if you look at this- so dynamic programming is a kind of a general technique that essentially allows you to express this more complicated problem in terms of a simpler problem.
+If we start at the end, um, if the two match then, well we can just immediately, um, you know, delete these two and that's- it's gonna be the same, right?
+[NOISE] But that's the same as, you know, [inaudible] deleting from "t".
+Okay, so this is, um, let's call it, uh, you know, um, I guess let's call this insertion- it's technically insertion [NOISE].
+[NOISE] And right now you're probably looking at this like, well, obviously, you know, you sho- you should do this one.
+So, um, um, because of this I'm kind of trying to re-frame the [NOISE] problem a little bit.
+Oh, you could- How do we eliminate that [inaudible] [NOISE] Um, that's- you can think about that as kind of equivalent.
+Yeah, okay, so let's keep on going.
+Yeah, so I was trying to argue that, um, with- if you're going to right to left, it's, uh, without loss of generality.
+[NOISE] Um, okay, so- so let's, um, try to code this up and see if we can make this program work.
+Okay, so, um, so I'm gonna define a function that takes two strings, and then I'm going to um, define a recurrence.
+So, recurrences are- are, I guess, one word I haven't really used, but this is really the way you should th- kind of think about, uh, dynamic programs, and this idea of taking complex problems and breaking it down.
+Um, so remember at any point in time, I have, uh, let's say a sub problem, and since I'm going right to left, I'm only considering the first, um, "m" letters of "s" and the first letter "n" letters of "t".
+Okay, so recurse is going to return the minimum edit distance between two things, the first "m" letters of "s", and the first "n" letters of "t".
+[LAUGHTER] I mean if you were doing this, uh, you would probably want to test it some more, but in the interest of the time, I'll kind of move on.
+[NOISE] So this is an example of, you know, kind of basic, uh, dynamic programming which are, uh, you'd solve a problem trying to formulate it as a recurrence of a complicated problem in terms of smaller problems.
+Um, and like I said before this is gonna kind of show up, um, um, over and over again in this class.
+Um, if you think about, let's say, you have a, um, a problem here, right?
+Um, you know, once you compute this, no matter if you're coming from here or here, you're kind of using the same value.
+Which is a kind of a bread and butter of, um, you know, machine learning here.
+And so these are data points, you want to, let's say, predict housing price from, you know, square footage or something like that.
+Um, so you might want to like find, you know, a fit.
+Two points is maybe kind of a little bit degenerate, but that's the simple example we are going to work with.
+So let's try to see what this looks like in code.
+Okay, so for every moment, I'm going to- I have a w, I can compute the value of the function, and also take the gradient of the derivative.

@@ -1,0 +1,42 @@
+Yay. [LAUGHTER]Hi. My name is [inaudible]. masters student and I'm interested in
+computer vision.the way they formulate them,  intrinsically relied on camp-
+exponential search which, um,no matter how much compute you have, you're never going
+ to, Lisp was- is- uh,had a lot of ideas that But of course, um,  it didn't last long.
+ And for some reason,  which I don't quite understand,it killed off neural nets
+research even though they fields, many of the techniques that we're gonna look at,  
+for example, maximum likelihood,came from your statistics or games came from economics
+, optimizations, fields, many of the techniques that we're gonna look at, for example,
+maximum likelihood,   came from your statistics or games came from economics, optimizations,
+gradient descent, hence from- was, you know,  [LAUGHTER]. and you can fool the
+computer, um,  as- of- save our-our face recognition system to think that you're
+actually, you know, someone else.  Um, and ProPublica this organization realized
+whoa, whoa, whoa, whoa. Okay. Any questions about this?Maybe I'll pause for a 
+moment. machine learning is going to be such a kind of  an important building 
+blockof- that can be applied to any of the models that we kind of develop. 
+its main driver of a lot of su- successes in AI because it allows you to,  in software
+engineering terms,move the complexity from code to data. So examples like are linear
+classifiers,  deep neural networks, um,and most of these models are the ones that 
+people in machine learning um, use. In natural language or generating an image,um, 
+you are, uh, can be cast in this way as well. blanks with numbers so that, um,  every 
+row and column and three-by-three sub-block has the digits 1 through 9. Yeah.  
+True. Right, um. [inaudible]Ah, ah, [LAUGHTER] um, how about if I say Alice is, ah, 
+happy.  [LAUGHTER] Okay. How do you implement different, um, baselines or oracles?   
+Which I'll explain later.We'll actually award some extra credit for students who help 
+answer,um, other student's questions. [inaudible]The final project, ah, you can put 
+on GitHub. [inaudible] simplify the output in terms of saying that  the substitution 
+tells us we considered [inaudible] deletion peoples who considereda substitution or 
+vice-versa by saying like an empty character.  And building up on your what you, um, 
+what was said. Either we're doing, um, substitution,or, um, otherwise it's like the 
+same character. Or we have to insert- each like to- to strings that we have at one 
+point-  Uh-huh.[NOISE] So I can insert, um, insert where into-   [OVERLAPPING]So I 
+can insert an "s", right? [NOISE] Okay, so which one of these?  Door "a" door "b" or 
+door "c"? Yeah.So, recurrences are- are,I guess, one word I haven't really used, It's 
+gonna show up, in you know,  search problems, MDPs, and, you know, games.um, is n 
+minus 1, right?  Because remember insertion into s is deletion from t,that's why this 
+is n minus 1.  [NOISE] Every point recurses three times. Don't try to be, you know,  
+too slick at once.And so these are data points, you want to, let's say,  predict 
+housing price from,you know, square footage or something like that. So if I actually 
+had these two points, what should w be?  Okay, it doesn't matter. We'll, we'll compute 
+it.So one principle, which is maybe another general takeaway is,  abstract away the 
+details. It's, it's actually fine. And eta is just going to be this, uh, step size to, 
+um,   keeping things under control.
