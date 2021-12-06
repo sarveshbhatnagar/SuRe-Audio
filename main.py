@@ -57,9 +57,15 @@ if __name__ == '__main__':
 
     # print("Total duration: ", total_duration)
 
+<<<<<<< HEAD
     # print(important_tindx)
     # print(main_ttxts[17].transcripts[16].get_start())
+=======
+    print(important_tindx)
+    print(main_ttxts[2].transcripts[18].get_start(),main_ttxts[2].transcripts[18].get_end())
+>>>>>>> badf9d9628814dc45b835be46b93cf9673cdf90f
     # print(original_text)
     # print("Actual: ", th.duration)
 
     # print("Complete duration: ", complete_duration)
+    
