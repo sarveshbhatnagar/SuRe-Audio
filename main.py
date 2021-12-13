@@ -4,10 +4,10 @@ import completeness_agent.complete as cm
 import numpy as np
 
 if __name__ == '__main__':
-    th = tr.Transcriber("xvqsFTUsOmc")
-    th.transcribe()
-    th.save_transcript("sometranscript3")
-    # th.load_transcript("sometranscript")
+    th = tr.Transcriber("oPzyIShVmvw")
+    # th.transcribe()
+    # th.save_transcript("edgecomputing")
+    th.load_transcript("edgecomputing")
     divide = 20  # Optimization parameter for % compression.
     parts = len(th.transcript) // divide
     parts_list = [th.transcript[i:i + parts]
@@ -30,7 +30,7 @@ if __name__ == '__main__':
         cmp = cm.CompletenessAgent(scores, ttxts)
         main_scores.append(scores)
         main_ttxts.append(ttxts)
-        val = np.percentile(scores, 98)
+        val = np.percentile(scores, 90)
         cur_tindx = []
         for j in range(len(scores)):
             cur_tindx.append(j)
@@ -58,8 +58,8 @@ if __name__ == '__main__':
     # print("Total duration: ", total_duration)
 
     print(important_tindx)
-    print(main_ttxts[2].transcripts[18].get_start(),
-          main_ttxts[2].transcripts[18].get_end())
+    # print(main_ttxts[2].transcripts[18].get_start(),
+    #       main_ttxts[2].transcripts[18].get_end())
     # print(original_text)
     # print("Actual: ", th.duration)
 
