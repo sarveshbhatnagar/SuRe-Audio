@@ -1,3 +1,4 @@
+
 from youtube_transcript_api import YouTubeTranscriptApi
 import transcribe_agent.transcribe as tr
 from gensim.summarization import summarize
@@ -20,3 +21,4 @@ print(summarize(text, ratio=0.1))
 # th.save_transcript("transcript123")
 
 # th.load_transcript("transcript123")
+
